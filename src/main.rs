@@ -2,8 +2,8 @@ use actix::{Actor, Addr};
 use actix_web::{App, HttpRequest, HttpResponse, HttpServer, middleware, web};
 use actix_web::web::Data;
 use actix_web_actors::ws;
-use example_game_server::game::Game;
-use example_game_server::server::Session;
+use rust_game_server_practice::game::Game;
+use rust_game_server_practice::server::Session;
 
 async fn ws(req: HttpRequest, stream: web::Payload, game: Data<Addr<Game>>) -> Result<HttpResponse, actix_web::Error> {
     ws::start(Session::new(game.get_ref().clone()), &req, stream)
